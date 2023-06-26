@@ -1,23 +1,26 @@
-<%= button_tag link_to "Add Food", new_food_path, class: "btn btn-primary" %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Food Name</th>
-      <th>Measurement Unit</th>
-      <th>Unit Price</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @foods.each do |food| %>
+<div class='container'> 
+  <div class='button-box'>
+    <%= button_tag link_to "Add Food", new_food_path, class: "add-food-button" %>
+  </div>  
+  <table class="food-table">
+    <thead>
       <tr>
-        <td><%= food.name %></td>
-        <td><%= food.measurement_unit %></td>
-        <td><%= food.price %></td>
-        <td><%= button_to "Delete", food_path(food), method: :delete, data: { confirm: "Are you sure you want to delete this food?" } %>
-        </td>
+        <th>Food Name</th>
+        <th>Measurement Unit</th>
+        <th>Unit Price</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @foods.each_with_index do |food, index| %>
+        <tr class="<%= index.even? ? 'light-row' : 'dark-row' %>">
+          <td><%= food.name %></td>
+          <td><%= food.measurement_unit %></td>
+          <td><%= food.price %></td>
+          <td><%= button_to "Delete", food_path(food), method: :delete, data: { confirm: "Are you sure you want to delete this food?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
