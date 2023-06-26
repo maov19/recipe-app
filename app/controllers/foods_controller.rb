@@ -1,32 +1,31 @@
-# app/controllers/foods_controller.rb
 class FoodsController < ApplicationController
-  before_action :set_food, only: [:show, :destroy]
+  before_action :set_food, only: %i[show destroy]
 
   def index
     @foods = Food.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @food = Food.new
   end
 
   def create
-    @food = Food.new(food_params)
+    @food = current_user.foods.build(food_params)
 
     if @food.save
-      redirect_to @food, notice: "Food was successfully created."
+      redirect_to foods_url, notice: 'Food was successfully created.'
     else
-      render :new
+      puts @food.errors.full_messages
+      render :new, notice: 'Food not created.'
     end
   end
 
   def destroy
     @food = Food.find(params[:id])
     @food.destroy
-    redirect_to foods_url, notice: "Food was successfully deleted."
+    redirect_to foods_url, notice: 'Food was successfully deleted.'
   end
 
   private
@@ -36,6 +35,6 @@ class FoodsController < ApplicationController
   end
 
   def food_params
-    params.require(:food).permit(:name, :measurement_unit, :price, :quantity, :user_id)
+    params.require(:food).permit(:name, :measurement_unit, :price, :user_id)
   end
 end
