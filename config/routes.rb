@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     sign_up: 'signup',
     edit: 'edit'
   }
+
+  resources :foods, only: [:destroy, :index, :create, :new]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
