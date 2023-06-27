@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  # before_action :set_recipe, only: %i[ show edit destroy ]
+  before_action :authenticate_user!
 
   # GET /recipes or /recipes.json
   def index
@@ -40,6 +40,7 @@ class RecipesController < ApplicationController
 
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
+    @recipe  = current_user.recipes.find(params[:id])
     @recipe.destroy
 
     redirect_to recipes_url, notice: 'Recipe was successfully destroyed.'
