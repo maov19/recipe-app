@@ -40,7 +40,7 @@ class RecipesController < ApplicationController
 
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
-    @recipe  = current_user.recipes.find(params[:id])
+    @recipe = current_user.recipes.find(params[:id])
     @recipe.destroy
 
     redirect_to recipes_url, notice: 'Recipe was successfully destroyed.'
