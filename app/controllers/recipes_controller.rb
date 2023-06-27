@@ -1,13 +1,13 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!
-
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(user_id: current_user.id)
   end
 
   # GET /recipes/1 or /recipes/1.json
-  def show; end
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
 
   # GET /recipes/new
   def new
@@ -49,12 +49,17 @@ class RecipesController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_recipe
-    @recipe = Recipe.find(params[:id])
-  end
+  # def set_recipe
+  #   @recipe = Recipe.find(params[:id])
+  # end
 
   # Only allow a list of trusted parameters through.
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
   end
+  # def recipe_params
+  #   params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description).tap do |whitelisted|
+  #     whitelisted[:public] = false unless params[:recipe][:public].present?
+  #   end
+  # end
 end
