@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300&display=swap');
+
 * {
-  background-color: azure;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 li {
@@ -12,6 +14,7 @@ li {
 
 h1 {
   font-size: 30px;
+  font-family: 'Playfair Display', serif;
   text-align: center;
   margin-bottom: 20px;
   color: #452805;
@@ -26,6 +29,8 @@ body {
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
+  background-color: azure;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
 }
 
 ul#recipes,
@@ -40,7 +45,7 @@ ul#recipes,
 #recipes a {
   text-decoration: none;
   color: #000;
-  font-weight: bolder;
+  font-family: 'Lobster', cursive;
 }
 
 .recipe-container {
@@ -54,10 +59,13 @@ ul#recipes,
   flex-direction: column;
   gap: 20px;
   flex: 1;
+  font-size: 26px;
+  letter-spacing: 2px;
 }
 
 .recipe-description {
   font-size: 18px;
+  font-weight: bolder;
 }
 
 .user-recipes-container {
