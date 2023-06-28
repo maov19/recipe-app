@@ -1,22 +1,24 @@
 <%# <p style="color: green"><%= notice %></p>
-<ul id="recipes">
-  <% @recipes.each_with_index do |recipe, index| %>
-      <div id="<%= dom_id recipe %> " class="recipe-container">
-        <div class="name-container">
-         <h3><%= link_to "Recipe #{index + 1 }", recipe_path(recipe )%></h3>
-         
-         <% if can? :destroy, recipe  %>
-          <%= button_to "REMOVE", recipe, method: :delete, class: 'delete' %>
-         <% end %>
-         
-        </div>
-        <div class="recipe-details">
-          <%= link_to recipe_path(recipe ) do%>
-            <p><%= recipe.description %></p>
-          <% end %>
-        </div>
-      </div>
-  <% end %>
-</ul>
+<div class="user-recipes-container">
+  <ul id="recipes">
+    <% if @recipes.any? %>
+      <% @recipes.each do |recipe| %>
+        <li id="<%= dom_id recipe %> " class="recipe-container">
+          <div class="name-container">
+          <%= link_to recipe.name, recipe_path(recipe), clas: 'recipe-name' %>
+          
+          <%= button_to "Delete", recipe, method: :delete, class: 'delete' if can?(:destroy, recipe) %>
+          
+          </div>
+          <div class="recipe-details">
+            <%= link_to recipe_path(recipe ) do%>
+              <p class="recipe-description"><%= recipe.description %></p>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
 
 
