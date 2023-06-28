@@ -5,7 +5,7 @@
     <li class="recipe-container" id="<%= dom_id(recipe) %>">
       <div class="name-container">
         <h3><%= link_to "#{recipe.name}", recipe_path(recipe) %></h3>
-        <p>By: <%= recipe.user.name %></p>
+        <p>By: <strong><i><%= recipe.user.name %></i></strong> </p>
       </div>
       <div class="recipe-details">
         <%= link_to recipe_path(recipe) do %>

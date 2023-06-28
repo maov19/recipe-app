@@ -6,13 +6,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%# <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'application', 'food_index', 'header', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <main>
+      <%= render 'shared/header' %>
+      <p class="notice" style="color: blue;"><%= notice %></p>
+      <p class="alert" style="color: blue;"><%= alert %></p>
+      <%= yield %>
+    </main>
   </body>
 </html>
