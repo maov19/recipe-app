@@ -1,12 +1,12 @@
 header {
-  height: 100px;
+  height: 90px;
   height: 130px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 #header-container {
   position: fixed;
-  height: 100px;
+  height: 90px;
   width: 100%;
   display: flex;
   align-items: center;

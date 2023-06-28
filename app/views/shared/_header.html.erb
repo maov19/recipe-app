@@ -1,8 +1,6 @@
 <header>
     <div id="header-container">
         <ul id="navbar-nav">
-            <% if user_signed_in? %>
-
             <li class="nav-item">
                 <%= link_to "Public Recipes", public_recipes_path, class: "nav-link#{' active' if current_page?(public_recipes_path)}" %>
             </li>
@@ -22,17 +20,6 @@
             <li class="nav-item sign-out">
                 <%= link_to "Sign Out", destroy_user_session_path,  data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to logout?' }, class: "nav-link" %>
             </li>
-
-            <% else %>
-
-            <li class="nav-item">
-                <%= link_to "Sign Up", new_user_registration_path, class: "nav-link#{' active' if current_page?(new_user_registration_path)}"  %>
-            </li>
-
-            <li class="nav-item">
-                <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
-            </li>
-            <% end %>
         </ul>
     </div>
 </header>

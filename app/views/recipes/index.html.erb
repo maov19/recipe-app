@@ -7,7 +7,7 @@
           <div class="name-container">
           <%= link_to recipe.name, recipe_path(recipe), clas: 'recipe-name' %>
           
-          <%= button_to "Delete", recipe, method: :delete, class: 'delete' if can?(:destroy, recipe) %>
+          <%= button_to "Remove", recipe, method: :delete, title: 'Delete recipe', class: 'delete' if can?(:destroy, recipe) %>
           
           </div>
           <div class="recipe-details">
