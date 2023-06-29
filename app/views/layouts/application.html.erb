@@ -7,14 +7,17 @@
     <%= csp_meta_tag %>
 
     <%# <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag 'application', 'food_index', 'header', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'food_index', 'form', 'header', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <main>
+    
+    <% if user_signed_in?  %>
       <%= render 'shared/header' %>
+    <% end %>
       <p class="notice" style="color: blue;"><%= notice %></p>
       <p class="alert" style="color: blue;"><%= alert %></p>
       <%= yield %>
