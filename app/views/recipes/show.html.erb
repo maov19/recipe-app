@@ -22,7 +22,7 @@
     <p>Steps go here...</p>
 
     <div class="button-container">
-      <%= button_tag link_to "Generate shopping list", '', class: "add-food-button", disabled: true %>
+      <%= button_tag link_to "Generate shopping list", shopping_lists_path , class: "add-food-button", disabled: true %>
       <% if can? :destroy, @recipe %>
         <%= button_tag link_to "Add ingredient", new_recipe_recipe_food_path(@recipe), class: "add-food-button" %>
       <% end %>
