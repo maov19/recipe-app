@@ -99,3 +99,11 @@ button:disabled {
 .add-food-button:focus {
   outline: none;
 }
+
+.number-price {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  justify-content: space-between;
+  margin: 1rem 0 1rem 0;
+}
