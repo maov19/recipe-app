@@ -4,6 +4,8 @@
   align-items: center;
 }
 
+/* tables section */
+
 .food-table {
   width: 80%;
   margin-top: 2rem;
@@ -44,6 +46,18 @@ th {
   background-color: #e5e5e5;
 }
 
+/* ingredient-table section  */
+.ingredient-table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.ingredient-table-container .food-table {
+  margin-top: 20px;
+}
+
+/* End of ingredient-table section  */
+
 .delete-button {
   text-decoration: underline;
   color: #0069d9;
@@ -63,19 +77,23 @@ button {
   background-color: transparent;
 }
 
+button:disabled {
+  display: none;
+}
+
 .add-food-button {
   align-self: flex-end;
   text-decoration: none;
   border: none;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #5e3706;
+  color: aliceblue;
   padding: 8px 16px;
   border-radius: 4px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .add-food-button:hover {
-  background-color: #0069d9;
+  background-color: #452805;
 }
 
 .add-food-button:focus {
