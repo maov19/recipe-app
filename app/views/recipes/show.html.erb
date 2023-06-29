@@ -9,7 +9,7 @@
         <% if can? :destroy, @recipe%>
           <p>Public </p>
           <%= form_with(model: @recipe, url: toggle_public_recipe_path(@recipe), method: :patch, html: { class: 'toggle-button' }) do |form| %>
-            <%= form.check_box :on, checked: @recipe.public, onchange: "this.form.submit()" %>
+            <%= form.check_box :on, role: "switch", checked: @recipe.public, onchange: "this.form.submit()" %>
             <%= form.label :on, class: 'toggle-button-label' %>
           <% end %>
         <% end %>
