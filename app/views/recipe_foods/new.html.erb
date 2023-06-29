@@ -7,7 +7,7 @@
   
     <%= form_with(model: @recipe_food, url: recipe_recipe_foods_path, method: :post) do |f| %>
       <div class="field-recipe">
-        <%= f.collection_select :food_id, Food.all, :id, :name, class: "form-control" %>
+        <%= f.collection_select :food_id, Food.where(user_id: current_user.id), :id, :name, class: "form-control" %>
       </div>
       <div class="field-recipe">
         <%= f.number_field :quantity, placeholder: 'Quantity', min: 0, required: true, class: "form-control" %>
