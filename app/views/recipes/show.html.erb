@@ -1,0 +1,62 @@
+<div id="recipe-show-page">
+  <div class="recipe-show-container">
+      <h1><%= @recipe.name %></h1>
+
+    <div class="recipe-preparation-time">
+      <p>Preparation time: <%= @recipe.preparation_time %> <%= @recipe.preparation_time > 1? 'hours' : 'hour' %></p>
+      <div class="toggle-container">
+        
+        <% if can? :destroy, @recipe%>
+          <p>Public </p>
+          <%= form_with(model: @recipe, url: toggle_public_recipe_path(@recipe), method: :patch, html: { class: 'toggle-button' }) do |form| %>
+            <%= form.check_box :on, role: "switch", checked: @recipe.public, onchange: "this.form.submit()" %>
+            <%= form.label :on, class: 'toggle-button-label' %>
+          <% end %>
+        <% end %>
+        
+      </div>
+    </div>
+    <p class="recipe-cooking-time">Cooking time: <%= @recipe.cooking_time %> <%= @recipe.cooking_time > 1? 'hours' : 'hour' %></p>
+
+    <div class="description">
+    <h4>About Recipe</h4>
+    <p><%= @recipe.description %></p>
+    
+    </div>
+
+
+    <div class="button-container">
+      <%= button_tag link_to "Generate shopping list", shopping_lists_path , class: "add-food-button", disabled: true %>
+      <% if can? :destroy, @recipe %>
+        <%= button_tag link_to "Add ingredient", new_recipe_recipe_food_path(@recipe), class: "add-food-button" %>
+      <% end %>
+    </div>
+
+    <hr>
+
+      <section class="ingredient-table-container">
+        <table class="food-table">
+          <thead>
+            <tr>
+              <th>Food </th>
+              <th>Quantity</th>
+              <th>Value</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recipe_foods.each_with_index do |recipe_food, index| %>
+              <tr class="<%= index.even? ? 'light-row' : 'dark-row' %>">
+                <td><%= recipe_food.food.name %></td>
+                <td><%= recipe_food.quantity %> <%= recipe_food.food.measurement_unit %></td>
+                <td>$ <%= recipe_food.food.price * recipe_food.quantity %></td>
+                <td><%= button_to "Remove", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, class: 'delete' %> <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe, recipe_food) %>  </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </section>
+  </div>
+
+</div>
+

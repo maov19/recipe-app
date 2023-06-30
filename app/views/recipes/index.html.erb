@@ -1,0 +1,23 @@
+<div class="user-recipes-container">
+  <ul id="recipes">
+    <% if @recipes.any? %>
+      <% @recipes.each do |recipe| %>
+        <li id="<%= dom_id recipe %> " class="recipe-container">
+          <div class="name-container">
+          <%= link_to recipe.name, recipe_path(recipe), clas: 'recipe-name' %>
+          
+          <%= button_to "Remove", recipe, method: :delete, title: 'Delete recipe', class: 'delete' if can?(:destroy, recipe) %>
+          
+          </div>
+          <div class="recipe-details">
+            <%= link_to recipe_path(recipe ) do%>
+              <p class="recipe-description"><%= recipe.description %></p>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+

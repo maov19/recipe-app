@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* tables section */
+
+.food-table {
+  width: 80%;
+  margin-top: 2rem;
+  border-collapse: collapse;
+  justify-self: center;
+}
+
+th {
+  background-color: #333;
+  color: #fff;
+  text-align: left;
+}
+
+.food-table th {
+  background-color: #2220204f;
+  color: #452805;
+  padding: 10px;
+  text-align: center;
+  border-right: 2px solid;
+}
+
+.food-table td {
+  padding: 10px;
+  text-align: center;
+  border-right: 2px solid;
+}
+
+.food-table th:last-child,
+.food-table td:last-child {
+  border: none;
+}
+
+.food-table .light-row {
+  background-color: #f2f2f2;
+}
+
+.food-table .dark-row {
+  background-color: #e5e5e5;
+}
+
+/* ingredient-table section  */
+.ingredient-table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.ingredient-table-container .food-table {
+  margin-top: 20px;
+}
+
+/* End of ingredient-table section  */
+
+.delete-button {
+  text-decoration: underline;
+  color: #0069d9;
+  cursor: pointer;
+}
+
+.button-box {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+button:disabled {
+  display: none;
+}
+
+.add-food-button {
+  align-self: flex-end;
+  margin-right: 30px;
+  text-decoration: none;
+  border: none;
+  background-color: #5e3706;
+  color: aliceblue;
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.add-food-button:hover {
+  background-color: #452805;
+}
+
+.add-food-button:focus {
+  outline: none;
+}
+
+.number-price {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  justify-content: space-between;
+  margin: 1rem 0 1rem 0;
+}
