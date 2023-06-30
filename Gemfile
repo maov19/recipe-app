@@ -81,4 +81,3 @@ gem 'pg'
 gem 'cancancan'
 
 gem 'rspec-core'
-
