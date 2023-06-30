@@ -17,7 +17,6 @@
         <tr class="<%= index.even? ? 'light-row' : 'dark-row' %>">
           <td><%= recipe_food.food_name %></td>
           <td><%= recipe_food.quantity %> <%= recipe_food.measurement_unit %></td>
-          <!--<td>$<%= recipe_food.food_price %></td>--> 
           <td>$<%= recipe_food.food_price * recipe_food.quantity %></td> 
         </tr>
       <% end %>
