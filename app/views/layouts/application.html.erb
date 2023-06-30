@@ -14,7 +14,10 @@
 
   <body>
     <main>
+    
+    <% if user_signed_in?  %>
       <%= render 'shared/header' %>
+    <% end %>
       <p class="notice" style="color: blue;"><%= notice %></p>
       <p class="alert" style="color: blue;"><%= alert %></p>
       <%= yield %>
