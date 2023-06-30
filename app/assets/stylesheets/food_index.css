@@ -83,6 +83,7 @@ button:disabled {
 
 .add-food-button {
   align-self: flex-end;
+  margin-right: 30px;
   text-decoration: none;
   border: none;
   background-color: #5e3706;

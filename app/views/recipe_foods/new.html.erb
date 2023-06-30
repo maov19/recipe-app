@@ -1,9 +1,8 @@
-<div class="card">
+  <div class="card-body form">
+  <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Add Ingredient</h3>
+    <h3 class="card-title" style="margin-bottom: 15px">Add Ingredient</h3>
   </div>
-
-  <div class="card-body">
   
     <%= form_with(model: @recipe_food, url: recipe_recipe_foods_path, method: :post) do |f| %>
       <div class="field-recipe">
@@ -12,7 +11,7 @@
       <div class="field-recipe">
         <%= f.number_field :quantity, placeholder: 'Quantity', min: 0, required: true, class: "form-control" %>
       </div>
-      <div class="actions-recipe">
+      <div class="actions-recipe actions">
         <%= f.submit "Add Ingredient", class: 'btn' %>
       </div>
     
