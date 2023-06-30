@@ -16,10 +16,14 @@
         
       </div>
     </div>
-
     <p class="recipe-cooking-time">Cooking time: <%= @recipe.cooking_time %> <%= @recipe.cooking_time > 1? 'hours' : 'hour' %></p>
 
-    <p>Steps go here...</p>
+    <div class="description">
+    <h4>About Recipe</h4>
+    <p><%= @recipe.description %></p>
+    
+    </div>
+
 
     <div class="button-container">
       <%= button_tag link_to "Generate shopping list", shopping_lists_path , class: "add-food-button", disabled: true %>
