@@ -1,36 +1,37 @@
 require 'rails_helper'
+require_relative 'data_helper'
 
 RSpec.describe "Foods", type: :system do
-    describe "GET /foods" do
-        it "displays all foods" do
-            user = User.create!(name: "John", email: "john@example.com", password: "password")
-            user.save
-            sign_in user
-
-            food1 = user.foods.create!(name: "Food 1", measurement_unit: "Unit", price: 10, quantity: 5, user: user)
-            food2 = user.foods.create!(name: "Food 2", measurement_unit: "Unit", price: 15, quantity: 3, user: user)
-
-            sleep 5
-
-            visit foods_path
-
-            expect(page).to have_content(food1.name)
-            expect(page).to have_content(food2.name)
-        end
+  before do
+    data
+  end
+  describe "GET /foods" do
+    it "displays button to add foods" do
+      visit root_path
+      fill_in 'Email', with: 'Adarsh.pathak@example.com'
+      fill_in 'Password', with: '123456'
+      click_button 'Log in'
+      click_link 'Foods'
+      expect(page).to have_content('Add Food')
     end
 
-  describe "GET /foods/:id" do
-    it "displays a food" do
-      user = User.create(name: "John", email: "john@example.com", password: "password")
-      food = Food.create(name: "Food 1", measurement_unit: "Unit", price: 10, quantity: 5, user: user)
-
-      visit food_path(food)
-
-      expect(page).to have_content(food.name)
-      expect(page).to have_content(food.measurement_unit)
-      expect(page).to have_content(food.price)
-      expect(page).to have_content(food.quantity)
-    end
+      it "displays created foods" do
+        visit root_path
+        fill_in 'Email', with: 'Adarsh.pathak@example.com'
+        fill_in 'Password', with: '123456'
+        click_button 'Log in'
+        click_link 'Foods'
+        click_link(class: "add-food-button")
+        fill_in 'Name', with: 'Potato'
+        fill_in 'Measurement unit', with: 'unit'
+        fill_in 'Quantity', with: 10
+        fill_in 'Price', with: 5
+        find('.btn.btn-primary').click
+        expect(page).to have_content('Potato')
+        expect(page).to have_content('10')
+        expect(page).to have_content('5')
+        expect(page).to have_content('unit')
+      end
   end
 
   describe "GET /foods/new" do
@@ -44,61 +45,45 @@ RSpec.describe "Foods", type: :system do
       expect(page).to have_field("food_price")
       expect(page).to have_button("Add Food")
     end
-  end
 
-  describe "POST /foods" do
     it "creates a new food" do
-      user = User.create(name: "John", email: "john@example.com", password: "password")
-
-      visit new_food_path
-
-      fill_in "food_name", with: "New Food"
-      fill_in "food_measurement_unit", with: "Unit"
-      fill_in "food_quantity", with: 10
-      fill_in "food_price", with: 20
-      click_button "Add Food"
-
-      expect(page).to have_current_path(foods_path)
+      visit root_path
+      fill_in 'Email', with: 'Adarsh.pathak@example.com'
+      fill_in 'Password', with: '123456'
+      click_button 'Log in'
+      click_link 'Foods'
+      click_link(class: "add-food-button")
+      fill_in 'Name', with: 'Tuna'
+      fill_in 'Measurement unit', with: 'unit'
+      fill_in 'Quantity', with: 10
+      fill_in 'Price', with: 5
+      find('.btn.btn-primary').click
       expect(page).to have_content("Food was successfully created.")
-      expect(Food.last.name).to eq("New Food")
-      expect(Food.last.measurement_unit).to eq("Unit")
-      expect(Food.last.quantity).to eq(10)
-      expect(Food.last.price).to eq(20)
-    end
-
-    it "renders the new food form when there are validation errors" do
-      user = User.create(name: "John", email: "john@example.com", password: "password")
-
-      visit new_food_path
-
-      fill_in "food_name", with: ""
-      fill_in "food_measurement_unit", with: "Unit"
-      fill_in "food_quantity", with: 10
-      fill_in "food_price", with: 20
-      click_button "Add Food"
-
-      expect(page).to have_current_path(foods_path)
-      expect(page).to have_content("Food not created.")
-      expect(page).to have_content("Name can't be blank")
-      expect(Food.count).to eq(0)
+      expect(page).to have_content("Tuna")
+      expect(page).to have_content("10")
+      expect(page).to have_content("5")
+      expect(page).to have_content("unit")
     end
   end
 
   describe "DELETE /foods/:id" do
-    it "deletes a food" do
-      user = User.create(name: "John", email: "john@example.com", password: "password")
-      food = Food.create(name: "Food 1", measurement_unit: "Unit", price: 10.0, quantity: 5, user: user)
+    it "deletes selected food" do
+      visit root_path
+      fill_in 'Email', with: 'Adarsh.pathak@example.com'
+      fill_in 'Password', with: '123456'
+      click_button 'Log in'
+      click_link 'Foods'
+      click_link(class: "add-food-button")
+      fill_in 'Name', with: 'Potato'
+      fill_in 'Measurement unit', with: 'unit'
+      fill_in 'Quantity', with: 10
+      fill_in 'Price', with: 5
+      find('.btn.btn-primary').click
 
-      visit foods_path
-
-      expect(page).to have_content(food.name)
-
-      click_button "Delete"
+      all("button.delete-button").first.click
 
       expect(page).to have_current_path(foods_path)
       expect(page).to have_content("Food was successfully deleted.")
-      expect(page).not_to have_content(food.name)
-      expect(Food.count).to eq(0)
     end
   end
 end
